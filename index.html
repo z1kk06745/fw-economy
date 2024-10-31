@@ -1,0 +1,701 @@
+<html>
+
+<style>
+
+    .tabs {
+
+        font-size: 0;
+
+    }
+
+
+
+    .tabs>input[type="radio"] {
+
+        display: none;
+
+    }
+
+
+
+    .tabs>div {
+
+        display: none;
+
+        border: 1px solid #e0e0e0;
+
+        padding 10px 15px;
+
+        font-size: 16px;
+
+    }
+
+
+
+    #tab1:checked~#content-1,
+
+    #tab2:checked~#content-2 {
+
+        display: block;
+
+    }
+
+
+
+    .tabs>label {
+
+        display: inline-block;
+
+        text-align: center;
+
+        vertical-align: middle;
+
+        user-select: none;
+
+        background-color: #f5f5f5;
+
+        border: 1px solid #e0e0e0;
+
+        padding: 2px 8px;
+
+        font-size: 16px;
+
+        line-height: 1.5;
+
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+        cursor: pointer;
+
+        position: relative;
+
+        top: 1px;
+
+    }
+
+
+
+    .tabs>label:not(:first-of-type) {
+
+        border-left: none;
+
+    }
+
+
+
+    .tabs>input[type="radio"]:checked+label {
+
+        background-color: #fff;
+
+        border-bottom: 1px solid #fff;
+
+    }
+
+</style>
+
+
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <link rtl="stylesheet" href="style.css">
+
+    <title>Калькулятор ОТН</title>
+
+    <script>
+
+        function Eclipse() {
+
+            var OTN = document.getElementById("inputOTN").value;
+
+            let monets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            let monetsPR = [60, 500, 2000, 100000, 50, 40, 1600, 80000, 70, 280, 1400, 70000, 100, 700, 42000, 252000];
+
+            let monetsTC = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            var chbox = document.getElementById("mode");
+
+            if (chbox.checked) {
+
+                monets[0] = document.getElementById("monet0").value;
+
+                monets[1] = document.getElementById("monet1").value;
+
+                monets[2] = document.getElementById("monet2").value;
+
+                monets[3] = document.getElementById("monet3").value;
+
+                OTN = monets[0] * monetsPR[0] + monets[1] * monetsPR[1] + monets[2] * monetsPR[2] + monets[3] * monetsPR[3];
+
+                document.getElementById("inputOTN").value = OTN / 10;
+
+            } else {
+
+                monets[0] = document.getElementById("monet0").value;
+
+                OTN = monets[0] * monetsPR[0];
+
+                document.getElementById("inputOTN").value = OTN / 10;
+
+            }
+
+        }
+
+
+
+        function Eclipse2() {
+
+            var OTN = document.getElementById("inputOTN").value;
+
+            let monets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            let monetsPR = [60, 500, 2000, 100000, 50, 40, 1600, 80000, 70, 280, 1400, 70000, 100, 700, 42000, 252000];
+
+            let monetsTC = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            var chbox = document.getElementById("mode");
+
+            if (chbox.checked) {
+
+                monets[4] = document.getElementById("monet4").value;
+
+                monets[5] = document.getElementById("monet5").value;
+
+                monets[6] = document.getElementById("monet6").value;
+
+                monets[7] = document.getElementById("monet7").value;
+
+                OTN = monets[4] * monetsPR[4] + monets[5] * monetsPR[5] + monets[6] * monetsPR[6] + monets[7] * monetsPR[7];
+
+                document.getElementById("inputOTN").value = OTN / 10;
+
+            } else {
+
+                monets[0] = document.getElementById("monet0").value;
+
+                OTN = monets[0] * monetsPR[0];
+
+                document.getElementById("inputOTN").value = OTN / 10;
+
+            }
+
+        }
+
+
+
+        function Eclipse3() {
+
+            var OTN = document.getElementById("inputOTN").value;
+
+            let monets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            let monetsPR = [60, 500, 2000, 100000, 50, 40, 1600, 80000, 70, 280, 1400, 70000, 100, 700, 42000, 252000];
+
+            let monetsTC = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            var chbox = document.getElementById("mode");
+
+            if (chbox.checked) {
+
+                monets[8] = document.getElementById("monet8").value;
+
+                monets[9] = document.getElementById("monet9").value;
+
+                monets[10] = document.getElementById("monet10").value;
+
+                monets[11] = document.getElementById("monet11").value;
+
+                OTN = monets[8] * monetsPR[8] + monets[9] * monetsPR[9] + monets[10] * monetsPR[10] + monets[11] * monetsPR[11];
+
+                document.getElementById("inputOTN").value = OTN / 10;
+
+            } else {
+
+                monets[8] = document.getElementById("monet8").value;
+
+                OTN = monets[8] * monetsPR[8];
+
+                document.getElementById("inputOTN").value = OTN / 10;
+
+            }
+
+        }
+
+
+
+        function Eclipse4() {
+
+            var OTN = document.getElementById("inputOTN").value;
+
+            let monets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            let monetsPR = [60, 500, 2000, 100000, 50, 40, 1600, 80000, 70, 280, 1400, 70000, 100, 700, 42000, 252000];
+
+            let monetsTC = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            var chbox = document.getElementById("mode");
+
+            if (chbox.checked) {
+
+                monets[12] = document.getElementById("monet12").value;
+
+                monets[13] = document.getElementById("monet13").value;
+
+                monets[14] = document.getElementById("monet14").value;
+
+                monets[15] = document.getElementById("monet15").value;
+
+                OTN = monets[12] * monetsPR[12] + monets[13] * monetsPR[13] + monets[14] * monetsPR[14] + monets[15] * monetsPR[15];
+
+                document.getElementById("inputOTN").value = OTN / 10;
+
+            } else {
+
+                monets[12] = document.getElementById("monet12").value;
+
+                OTN = monets[12] * monetsPR[12];
+
+                document.getElementById("inputOTN").value = OTN / 10;
+
+            }
+
+        }
+
+
+
+        function Power() {
+
+            var OTN = document.getElementById("inputOTN").value;
+
+            OTN = OTN * 10;
+
+            let monets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            let monetsPR = [60, 500, 2000, 100000, 50, 40, 1600, 80000, 70, 280, 1400, 70000, 100, 700, 42000, 252000];
+
+            let monetsTC = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            var chbox = document.getElementById("mode");
+
+            if (chbox.checked) {
+
+                monetsTC[0] = (Math.floor(OTN / monetsPR[1]));
+
+                monets[0] = (OTN - monetsTC[0] * monetsPR[1]) / monetsPR[0];
+
+                monets[0] = Math.floor(monets[0]);
+
+                document.getElementById("monet0").value = monets[0];
+
+
+
+                monetsTC[1] = (Math.floor(OTN / monetsPR[2]));
+
+                monets[1] = (OTN - monetsTC[1] * monetsPR[2]) / monetsPR[1];
+
+                monets[1] = Math.floor(monets[1]);
+
+                document.getElementById("monet1").value = monets[1];
+
+
+
+                monetsTC[2] = (Math.floor(OTN / monetsPR[3]));
+
+                monets[2] = (OTN - monetsTC[2] * monetsPR[3]) / monetsPR[2];
+
+                monets[2] = Math.floor(monets[2]);
+
+                document.getElementById("monet2").value = monets[2];
+
+
+
+                monets[3] = (Math.floor(OTN / monetsPR[3]));
+
+                document.getElementById("monet3").value = monets[3];
+
+
+
+                monetsTC[3] = (Math.floor(OTN / monetsPR[5]));
+
+                monets[4] = (OTN - monetsTC[3] * monetsPR[5]) / monetsPR[4];
+
+                monets[4] = Math.floor(monets[4]);
+
+                document.getElementById("monet4").value = monets[4];
+
+
+
+                monetsTC[4] = (Math.floor(OTN / monetsPR[6]));
+
+                monets[5] = (OTN - monetsTC[4] * monetsPR[6]) / monetsPR[5];
+
+                monets[5] = Math.floor(monets[5]);
+
+                document.getElementById("monet5").value = monets[5];
+
+
+
+                monetsTC[5] = (Math.floor(OTN / monetsPR[7]));
+
+                monets[6] = (OTN - monetsTC[5] * monetsPR[7]) / monetsPR[6];
+
+                monets[6] = Math.floor(monets[6]);
+
+                document.getElementById("monet6").value = monets[6];
+
+
+
+                monets[7] = (Math.floor(OTN / monetsPR[7]));
+
+                document.getElementById("monet7").value = monets[7];
+
+
+
+                monetsTC[6] = (Math.floor(OTN / monetsPR[9]));
+
+                monets[8] = (OTN - monetsTC[6] * monetsPR[9]) / monetsPR[8];
+
+                monets[8] = Math.floor(monets[8]);
+
+                document.getElementById("monet8").value = monets[8];
+
+
+
+                monetsTC[7] = (Math.floor(OTN / monetsPR[10]));
+
+                monets[9] = (OTN - monetsTC[7] * monetsPR[10]) / monetsPR[9];
+
+                monets[9] = Math.floor(monets[9]);
+
+                document.getElementById("monet9").value = monets[9];
+
+
+
+                monetsTC[8] = (Math.floor(OTN / monetsPR[11]));
+
+                monets[10] = (OTN - monetsTC[8] * monetsPR[11]) / monetsPR[10];
+
+                monets[10] = Math.floor(monets[10]);
+
+                document.getElementById("monet10").value = monets[10];
+
+
+
+                monets[11] = (Math.floor(OTN / monetsPR[11]));
+
+                document.getElementById("monet11").value = monets[11];
+
+
+
+                monetsTC[9] = (Math.floor(OTN / monetsPR[13]));
+
+                monets[12] = (OTN - monetsTC[9] * monetsPR[13]) / monetsPR[12];
+
+                monets[12] = Math.floor(monets[12]);
+
+                document.getElementById("monet12").value = monets[12];
+
+
+
+                monetsTC[10] = (Math.floor(OTN / monetsPR[14]));
+
+                monets[13] = (OTN - monetsTC[10] * monetsPR[14]) / monetsPR[13];
+
+                monets[13] = Math.floor(monets[13]);
+
+                document.getElementById("monet13").value = monets[13];
+
+
+
+                monetsTC[11] = (Math.floor(OTN / monetsPR[15]));
+
+                monets[14] = (OTN - monetsTC[11] * monetsPR[15]) / monetsPR[14];
+
+                monets[14] = Math.floor(monets[14]);
+
+                document.getElementById("monet14").value = monets[14];
+
+
+
+                monets[15] = (Math.floor(OTN / monetsPR[15]));
+
+                document.getElementById("monet15").value = monets[15];
+
+            } else {
+
+                monets[0] = OTN / monetsPR[0];
+
+                monets[0] = monets[0].toFixed(2)
+
+                document.getElementById("monet0").value = monets[0];
+
+
+
+                monets[1] = OTN / monetsPR[1];
+
+                monets[1] = monets[1].toFixed(2)
+
+                document.getElementById("monet1").value = monets[1];
+
+
+
+                monets[2] = OTN / monetsPR[2];
+
+                monets[2] = monets[2].toFixed(2)
+
+                document.getElementById("monet2").value = monets[2];
+
+
+
+                monets[3] = OTN / monetsPR[3];
+
+                monets[3] = monets[3].toFixed(2)
+
+                document.getElementById("monet3").value = monets[3];
+
+
+
+                monets[4] = OTN / monetsPR[4];
+
+                monets[4] = monets[4].toFixed(2)
+
+                document.getElementById("monet4").value = monets[4];
+
+
+
+                monets[5] = OTN / monetsPR[5];
+
+                monets[5] = monets[5].toFixed(2)
+
+                document.getElementById("monet5").value = monets[5];
+
+
+
+                monets[6] = OTN / monetsPR[6];
+
+                monets[6] = monets[6].toFixed(2)
+
+                document.getElementById("monet6").value = monets[6];
+
+
+
+                monets[7] = OTN / monetsPR[7];
+
+                monets[7] = monets[7].toFixed(2)
+
+                document.getElementById("monet7").value = monets[7];
+
+
+
+                monets[8] = OTN / monetsPR[8];
+
+                monets[8] = monets[8].toFixed(2)
+
+                document.getElementById("monet8").value = monets[8];
+
+
+
+                monets[9] = OTN / monetsPR[9];
+
+                monets[9] = monets[9].toFixed(2)
+
+                document.getElementById("monet9").value = monets[9];
+
+
+
+                monets[10] = OTN / monetsPR[10];
+
+                monets[10] = monets[10].toFixed(2)
+
+                document.getElementById("monet10").value = monets[10];
+
+
+
+                monets[11] = OTN / monetsPR[11];
+
+                monets[11] = monets[11].toFixed(2)
+
+                document.getElementById("monet11").value = monets[11];
+
+
+
+                monets[12] = OTN / monetsPR[12];
+
+                monets[12] = monets[12].toFixed(2)
+
+                document.getElementById("monet12").value = monets[12];
+
+
+
+                monets[13] = OTN / monetsPR[13];
+
+                monets[13] = monets[13].toFixed(2)
+
+                document.getElementById("monet13").value = monets[13];
+
+
+
+                monets[14] = OTN / monetsPR[14];
+
+                monets[14] = monets[14].toFixed(2)
+
+                document.getElementById("monet14").value = monets[14];
+
+
+
+                monets[15] = OTN / monetsPR[15];
+
+                monets[15] = monets[15].toFixed(2)
+
+                document.getElementById("monet15").value = monets[15];
+
+            }
+
+        }
+
+    </script>
+
+</head>
+
+
+
+<body>
+
+    <div class="tabs">
+
+        <input type="radio" name="tab" id="tab1" value="" checked="">
+
+        <label for="tab1">Калькулятор ОТН</label>
+
+        <div id="content-1">
+
+            <h1>Калькулятор</h1>
+
+            <p>У калькулятора есть 2 способа работы — перевод ОТН в монеты и перевод монет в ОТН. Для того, чтобы перевести ОТН в монеты, введите ОТН в соответсвующее окно и нажмите кнопку рассчитать. Для обратного перевода нажмите кнопку Р рядом с интересующей вас валютой. Учтите, что валюты одной страны располагаются в одном ряду и при нажатии кнопки Р - расчёт идёт с учётом ВСЕХ валют в этом ряду.</p>
+
+ <p>Если вы хотите перевести монеты одной страны в другие, то введите в поля с монетами число ваших монет, нажмите кнопку Р и введите полученный ОТН в поле ОТН с последующим нажатием кнопки "Рассчитать"</p>
+
+
+
+            <input type="checkbox" id="mode" checked name="mode" />Активация упрощённого режима
+
+            <p>Упрощённый режим работы отличается от обычного, тем что обычный режим рассчитывает отдельную цену для каждой валюты и монеты, как бы если бы покупали что-то монетами одного номинала и цены между монетами отличаются. Его необходимо использовать для продвинутых вычислений. Упрощённый же режим даст возможность быстро узнать цену без дополнительных расчётов.</p>
+
+            ОТН: <input type="number" id="inputOTN" name="inputOTN" required min="0" value="0" />
+
+            <button type="submit" onclick="Power()">Рассчитать</button>
+
+            <table class="vivod">
+
+                <caption>Вывод</caption>
+
+                <tr>
+
+                    <th>Золотой Венор</th>
+
+                    <th>Серебряник</th>
+
+                    <th>Четвертак</th>
+
+                    <th>Медный Венор</th>
+
+                </tr>
+
+                <tr>
+
+                    <td><input id="monet3" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet2" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet1" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet0" type="number" value="0" min="0"><input type="button" id ="monet0B" value = P onclick="Eclipse()"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Лингтар</th>
+
+                    <th>Линглас</th>
+
+                    <th>Лингвар</th>
+
+                    <th>Линг</th>
+
+                </tr>
+
+                <tr>
+
+                    <td><input id="monet7" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet6" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet5" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet4" type="number" value="0" min="0"><input type="button" id ="monet4B" value = P onclick="Eclipse2()"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Саграсс</th>
+
+                    <th>Вольд</th>
+
+                    <th>Тикилар</th>
+
+                    <th>Тикил</th>
+
+                </tr>
+
+                <tr>
+
+                    <td><input id="monet11" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet10" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet9" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet8" type="number" value="0" min="0"><input type="button" id ="monet8B" value = P onclick="Eclipse3()"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Фетмад</th>
+
+                    <th>Фетрон</th>
+
+                    <th>Фетис</th>
+
+                    <th>Фет</th>
+
+                </tr>
+
+                <tr>
+
+                    <td><input id="monet15" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet14" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet13" type="number" value="0" min="0"></td>
+
+                    <td><input id="monet12" type="number" value="0" min="0"><input type="button" id ="monet12B" value = P onclick="Eclipse4()"></td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+</body>
+
+
+
+</html>
