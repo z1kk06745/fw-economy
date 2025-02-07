@@ -31,6 +31,7 @@
             width: 180px; 
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); 
             flex: 0 0 calc(20% - 20px); /* Устанавливаем ширину таблицы для 5 в ряд с учетом отступов */
+            cursor: pointer; /* Указатель курсора при наведении */
         }
         .currency-table th, .currency-table td { 
             border: 1px solid #ddd; 
@@ -43,6 +44,15 @@
         .currency-table th { background-color: #333; }
         .logo-container { margin-bottom: 10px; }
         .logo-placeholder { width: 100px; height: 100px; box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.1); background-color: transparent; display: inline-block; }
+        .tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -55,6 +65,7 @@
     <input type="number" id="valueInput" oninput="convertCurrency()" value="1000">
     
     <div class="currency-container" id="currencyTables"></div>
+    <div class="tooltip" id="tooltip"></div> <!-- Всплывающее окно для примечаний -->
     
     <script>
         const currencies = [
@@ -89,7 +100,6 @@
             currencies.forEach((currency, index) => {
                 let table = document.createElement("table");
                 table.classList.add("currency-table");
-                table.setAttribute("title", notes[index]); // Устанавливаем уникальный текст примечания
                 table.innerHTML = `
                     <thead>
                         <tr><th colspan="2">${currency.name}</th></tr>
@@ -97,8 +107,24 @@
                     </thead>
                     <tbody id="currencyTable${index}"></tbody>
                 `;
-                container.appendChild(table);
+                table.addEventListener('click', (event) => showTooltip(event, notes[index])); // Обработчик клика
+                table.addEventListener('mouseenter', (event) => showTooltip(event, notes[index])); // Обработчик наведения
+                table.addEventListener('mouseleave', hideTooltip); // Обработчик ухода курсора
+ container.appendChild(table);
             });
+        }
+
+        function showTooltip(event, note) {
+            const tooltip = document.getElementById("tooltip");
+            tooltip.innerText = note;
+            tooltip.style.display = "block";
+            tooltip.style.left = `${event.pageX}px`;
+            tooltip.style.top = `${event.pageY}px`;
+        }
+
+        function hideTooltip() {
+            const tooltip = document.getElementById("tooltip");
+            tooltip.style.display = "none";
         }
 
         function convertCurrency() {
@@ -116,7 +142,15 @@
                 });
             });
         }
-        
+
+        // Закрытие всплывающего окна при клике вне его
+        document.addEventListener('click', (event) => {
+            const tooltip = document.getElementById("tooltip");
+            if (!tooltip.contains(event.target)) {
+                tooltip.style.display = "none";
+            }
+        });
+
         generateTables();
         convertCurrency();
     </script>
