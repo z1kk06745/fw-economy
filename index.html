@@ -60,7 +60,7 @@
         <img src="https://i.imgur.com/pbGxtuP.png" alt="Логотип" class="logo-placeholder">
     </div>
     <h2>Калькулятор рыночной цены ФВ РП</h2>
-    <p>Каждая из таблиц имеет дополнительное описание - задержите курсор, чтобы увидеть его!(только на ПК)</p>
+    <p>Каждая из таблиц имеет дополнительное описание - задержите курсор на таблице, чтобы увидеть его!(только на ПК)</p>
     <label>Введите ценность в ОТН единицах:</label>
     <input type="number" id="valueInput" oninput="convertCurrency()" value="1000">
     
@@ -134,7 +134,7 @@
                 let tableBody = document.getElementById(`currencyTable${index}`);
                 tableBody.innerHTML = "";
                 currency.coins.forEach((coin) => {
-                    let count = Math.floor(remaining / coin.value);
+                    let count = Math.round(remaining / coin.value);
                     remaining %= coin.value;
                     let row = document.createElement("tr");
                     row.innerHTML = `<td>${ coin.name}</td><td>${count}</td>`;
