@@ -108,9 +108,7 @@
                     <tbody id="currencyTable${index}"></tbody>
                 `;
                 table.addEventListener('click', (event) => showTooltip(event, notes[index])); // Обработчик клика
-                table.addEventListener('mouseenter', (event) => showTooltip(event, notes[index])); // Обработчик наведения
-                table.addEventListener('mouseleave', hideTooltip); // Обработчик ухода курсора
- container.appendChild(table);
+                container.appendChild(table);
             });
         }
 
@@ -133,11 +131,18 @@
                 let remaining = value;
                 let tableBody = document.getElementById(`currencyTable${index}`);
                 tableBody.innerHTML = "";
-                currency.coins.forEach((coin) => {
-                    let count = Math.round(remaining / coin.value);
+                currency.coins.forEach((coin, coinIndex) => {
+                    let count;
+                    if (coinIndex === 0) {
+                        count = Math.floor(remaining / coin.value); // Округление вниз для первой монеты
+                    } else if (coinIndex === currency.coins.length - 1) {
+                        count = Math.round(remaining / coin.value); // Округление до ближайшего числа для последней монеты
+                    } else {
+                        count = Math.floor(remaining / coin.value); // Округление вниз для остальных монет
+                    }
                     remaining %= coin.value;
                     let row = document.createElement("tr");
-                    row.innerHTML = `<td>${ coin.name}</td><td>${count}</td>`;
+                    row.innerHTML = `<td>${coin.name}</td><td>${count}</td>`;
                     tableBody.appendChild(row);
                 });
             });
