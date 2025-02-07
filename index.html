@@ -107,7 +107,9 @@
                     </thead>
                     <tbody id="currencyTable${index}"></tbody>
                 `;
-                table.addEventListener('click', (event) => showTooltip(event, notes[index])); // Обработчик клика
+                // Обработчики событий для отображения подсказки
+                table.addEventListener('mouseover', (event) => showTooltip(event, notes[index]));
+                table.addEventListener('mouseout', hideTooltip);
                 container.appendChild(table);
             });
         }
@@ -147,14 +149,6 @@
                 });
             });
         }
-
-        // Закрытие всплывающего окна при клике вне его
-        document.addEventListener('click', (event) => {
-            const tooltip = document.getElementById("tooltip");
-            if (!tooltip.contains(event.target)) {
-                tooltip.style.display = "none";
-            }
-        });
 
         generateTables();
         convertCurrency();
