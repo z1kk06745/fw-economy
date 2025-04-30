@@ -1,57 +1,114 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Калькулятор валют</title>
     <style>
-        body { 
-            font-family: Georgia, serif; 
-            text-align: center; 
-            background: url('https://i.imgur.com/7dzfLgn.png') no-repeat center center fixed; 
-            background-size: cover; 
-            color: white; 
-        }
-        input { 
-            width: 120px; 
-            padding: 5px; 
-            margin: 10px 0; 
-            text-align: right; 
-            background: #555; 
-            color: white; 
-            border: 1px solid white;
-        }
-        .currency-container { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 20px; 
-        }
-        .currency-table { 
-            border-collapse: collapse; 
-            width: 180px; 
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); 
-            flex: 0 0 calc(20% - 20px); /* Устанавливаем ширину таблицы для 5 в ряд с учетом отступов */
-            cursor: pointer; /* Указатель курсора при наведении */
-        }
-        .currency-table th, .currency-table td { 
-            border: 1px solid #ddd; 
-            padding: 2px; 
-            text-align: center; 
-            font-size: 14px;
-            background-color: #555; 
-            box-shadow: 0px 0px 2px 1px rgba(255,255,255,1);
-        }
-        .currency-table th { background-color: #333; }
-        .logo-container { margin-bottom: 10px; }
-        .logo-placeholder { width: 100px; height: 100px; box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.1); background-color: transparent; display: inline-block; }
-        .tooltip {
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.7);
+        body {
+            font-family: Georgia, serif;
+            text-align: center;
+            background: url('https://i.imgur.com/7dzfLgn.png') no-repeat center center fixed;
+            background-size: cover;
             color: white;
-            padding: 5px;
+        }
+
+        input[type="number"] {
+            width: 120px;
+            padding: 5px 6px;
+            margin: 5px 0;
+            text-align: left;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            background: #333;
+            color: white;
+            border: 1px solid #ddd;
+            cursor: text;
+        }
+
+        .currency-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .currency-table {
+            border-collapse: collapse;
+            width: 180px;
+            box-shadow: 0 0 7px rgba(255, 255, 255, 0.75);
+            border: 2px solid #ddd;
+            flex: 0 0 calc(20% - 20px);
+            cursor: pointer;
+        }
+
+        .currency-table th, .currency-table td {
+            border: 1px solid #aaa;
+            padding: 2px 4px;
+            text-align: center;
+            font-size: 14px;
+            background-color: rgba(68, 68, 68, 0.95); /* 90% непрозрачность */
+            box-shadow: 0 0 7px rgba(255, 255, 255, 0.25);
+            color: white;
+            height: 15px; /* фиксированная высота */
+        }
+
+        .currency-table th {
+            background-color: rgba(42, 42, 42, 0.95); /* тоже 90% */
+            height: 18px; /* чтобы заголовки не были выше */
+            font-size: 14px;
+        }
+
+        .currency-table th {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .currency-table input {
+            width: 75px;
+            padding: 9px 6px;
+            background: #333;
+            border: 1px solid #ddd;
+            color: white;
+            text-align: left;
+            font-family: Georgia, serif;
+            font-size: 13px;
+            height: 15px;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            margin-bottom: 10px;
+        }
+
+        .logo-placeholder {
+            width: 100px;
+            height: 100px;
+            box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.1);
+            background-color: transparent;
+            display: inline-block;
+        }
+
+        .tooltip {
+            position: static;
+            color: white;
+            padding: 15px;
             border-radius: 5px;
             display: none;
             z-index: 1000;
+        }
+
+        .calc-button, .table-calc-button {
+            background-color: #444;
+            color: white;
+            border: 1.5px solid rgba(42, 42, 42, 0.95);
+            padding: 0px 5px;
+            font-family: Georgia, serif;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            height: 26px;
         }
     </style>
 </head>
@@ -60,13 +117,15 @@
         <img src="https://i.imgur.com/pbGxtuP.png" alt="Логотип" class="logo-placeholder">
     </div>
     <h2>Калькулятор рыночной цены ФВ РП</h2>
-    <p>Каждая из таблиц имеет дополнительное описание - задержите курсор на таблице, чтобы увидеть его!(только на ПК)</p>
+    <p>Каждая из таблиц имеет дополнительное описание — задержите курсор на таблице, чтобы увидеть его! (только на ПК)</p>
+    
     <label>Введите ценность в ОТН единицах:</label>
-    <input type="number" id="valueInput" oninput="convertCurrency()" value="1000">
-    
+    <input type="number" id="valueInput" value="0">
+    <button class="calc-button" onclick="convertCurrency()">Рассчитать ОТН</button>
+
     <div class="currency-container" id="currencyTables"></div>
-    <div class="tooltip" id="tooltip"></div> <!-- Всплывающее окно для примечаний -->
-    
+    <div class="tooltip" id="tooltip"></div>
+
     <script>
         const currencies = [
             { name: "Трайская валюта", coins: [{ name: "Трайский ролор", value: 40800 }, { name: "Трайский сирвол", value: 2550 }, { name: "Трайский купсон", value: 170 }] },
@@ -106,12 +165,41 @@
                         <tr><th>Монета</th><th>Количество</th></tr>
                     </thead>
                     <tbody id="currencyTable${index}"></tbody>
+                    <tfoot><tr><td colspan="2"><button class="table-calc-button" onclick="calculateFromInputs(${index})">Рассчитать ОТН</button></td></tr></tfoot>
                 `;
-                // Обработчики событий для отображения подсказки
                 table.addEventListener('mouseover', (event) => showTooltip(event, notes[index]));
                 table.addEventListener('mouseout', hideTooltip);
                 container.appendChild(table);
             });
+        }
+
+        function convertCurrency() {
+            let value = parseFloat(document.getElementById("valueInput").value) || 0;
+            currencies.forEach((currency, index) => {
+                let remaining = value;
+                let tableBody = document.getElementById(`currencyTable${index}`);
+                tableBody.innerHTML = "";
+                currency.coins.forEach((coin) => {
+                    let count = Math.floor(remaining / coin.value);
+                    remaining %= coin.value;
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${coin.name}</td>
+                        <td><input type="number" min="0" value="${count}" id="coinInput-${index}-${coin.name.replace(/\s/g, '')}"></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            });
+        }
+
+        function calculateFromInputs(index) {
+            let total = 0;
+            currencies[index].coins.forEach((coin) => {
+                const inputId = `coinInput-${index}-${coin.name.replace(/\s/g, '')}`;
+                const count = parseInt(document.getElementById(inputId).value) || 0;
+                total += count * coin.value;
+            });
+            document.getElementById("valueInput").value = total;
         }
 
         function showTooltip(event, note) {
@@ -123,35 +211,13 @@
         }
 
         function hideTooltip() {
-            const tooltip = document.getElementById("tooltip");
-            tooltip.style.display = "none";
+            document.getElementById("tooltip").style.display = "none";
         }
 
-        function convertCurrency() {
-            let value = parseFloat(document.getElementById("valueInput").value) || 0;
-            currencies.forEach((currency, index) => {
-                let remaining = value;
-                let tableBody = document.getElementById(`currencyTable${index}`);
-                tableBody.innerHTML = "";
-                currency.coins.forEach((coin, coinIndex) => {
-                    let count;
-                    if (coinIndex === 0) {
-                        count = Math.floor(remaining / coin.value); // Округление вниз для первой монеты
-                    } else if (coinIndex === currency.coins.length - 1) {
-                        count = Math.round(remaining / coin.value); // Округление до ближайшего числа для последней монеты
-                    } else {
-                        count = Math.floor(remaining / coin.value); // Округление вниз для остальных монет
-                    }
-                    remaining %= coin.value;
-                    let row = document.createElement("tr");
-                    row.innerHTML = `<td>${coin.name}</td><td>${count}</td>`;
-                    tableBody.appendChild(row);
-                });
-            });
-        }
-
-        generateTables();
-        convertCurrency();
+        window.onload = () => {
+            generateTables();
+            convertCurrency();
+        };
     </script>
 </body>
 </html>
