@@ -194,12 +194,31 @@
 
         function calculateFromInputs(index) {
             let total = 0;
+            const savedValues = {};
+
+            // Сохраняем текущие значения, введённые пользователем в этой таблице
             currencies[index].coins.forEach((coin) => {
                 const inputId = `coinInput-${index}-${coin.name.replace(/\s/g, '')}`;
-                const count = parseInt(document.getElementById(inputId).value) || 0;
+                const inputElement = document.getElementById(inputId);
+                const count = parseInt(inputElement.value) || 0;
                 total += count * coin.value;
+                savedValues[coin.name] = count;
             });
+
+            // Обновляем поле ОТН
             document.getElementById("valueInput").value = total;
+
+            // Пересчитываем все таблицы
+            convertCurrency();
+
+            // Восстанавливаем сохранённые значения в текущей таблице
+            currencies[index].coins.forEach((coin) => {
+                const inputId = `coinInput-${index}-${coin.name.replace(/\s/g, '')}`;
+                const inputElement = document.getElementById(inputId);
+                if (inputElement) {
+                    inputElement.value = savedValues[coin.name];
+                }
+            });
         }
 
         function showTooltip(event, note) {
